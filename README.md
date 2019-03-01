@@ -1,1 +1,1 @@
-"# vuejs-webpack-typescript-package" 
+# Vuejs Typescript Npm Package With Webpack

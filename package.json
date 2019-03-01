@@ -1,0 +1,39 @@
+{
+  "name": "with-webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/my-lib.common.js",
+  "unpkg": "dist/my-lib.browser.js",
+  "module": "dist/my-lib.common.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.dev.js --progress --watch",
+    "build": "npm run build:browser && npm run build:common",
+    "build:browser": "cross-env NODE_ENV=production webpack --config config/webpack.config.browser.js --progress --hide-modules",
+    "build:common": "cross-env NODE_ENV=production webpack --config config/webpack.config.common.js --progress --hide-modules",
+    "prepack": "npm run build"
+  },
+  "files": [
+    "dist/*",
+    "!dist/1.*",
+    "src/components/*",
+    "src/styles/*",
+    "types/*"
+  ],
+  "typings": "types/index",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "vue": "^2.6.8",
+    "vue-loader": "^15.7.0",
+    "vue-property-decorator": "^7.3.0",
+    "vue-template-compiler": "^2.6.8",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
