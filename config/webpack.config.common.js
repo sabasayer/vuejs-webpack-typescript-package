@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 var base = require('./webpack.config.base');
 var path = require('path');
+var nodeExternals = require('webpack-node-externals');
 
 var outputFile = 'my-lib';
 
@@ -12,15 +13,16 @@ module.exports = merge(base, {
     libraryTarget: 'commonjs2',
   },
   target: 'node',
-  externals: {
-    // Put external libraries like lodash here
-    // With their package name
-    // Example: 'lodash': 'lodash'
-  },
+  externals: [
+    nodeExternals(),
+    {
+      // Put external libraries like lodash here
+      // With their global name
+      // Example: 'lodash': '_'
+      vue: 'vue',
+      'vue-property-decorator': 'vue-property-decorator'
+    }],
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-  }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
